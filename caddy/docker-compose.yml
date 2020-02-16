@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+ v2ray:
+    image: uuid3789/caddy-v2-backup:go
+    restart: always
+    network_mode: "host"
+    environment:
+      sspanel_url: 'https://google.com'
+      key: '123456'
+      docker: "true"
+      speedtest: 6
+      node_id: 4
+      api_port: 23333
+      downWithPanel: 1
+      TZ: "Asia/Shanghai"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+ caddy:
+    image: uuid3789/caddy-v2-backup:caddy
+    restart: always
+    environment:
+      - ACME_AGREE=true
+#      if u want to use cloudflare (for DNS challenge authentication)
+#      - CLOUDFLARE_EMAIL=xxxxxx@out.look.com
+#      - CLOUDFLARE_API_KEY=xxxxxxx
+      - V2RAY_DOMAIN=ssp04.340602.xyz
+      - V2RAY_PATH=/v2ray
+      - V2RAY_EMAIL=xinmincao521@gmail.com
+      - V2RAY_PORT=10550
+      - V2RAY_OUTSIDE_PORT=443
+    network_mode: "host"
+    volumes:
+      - ./.caddy:/root/.caddy
+      - ./Caddyfile:/etc/Caddyfile
