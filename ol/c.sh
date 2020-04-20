@@ -247,7 +247,7 @@ install_check(){
 }
 
 install_select(){
-    clear
+    
     while true
     do
     echo  "Which v2ray Docker you'd select:"
