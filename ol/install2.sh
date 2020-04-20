@@ -293,8 +293,4 @@ install_v2ray(){
 }
 
 # Initialization step
-clear
-while true
-do
 
-done
