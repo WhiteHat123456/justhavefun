@@ -11,8 +11,8 @@ red='\033[0;31m'
 green='\033[0;32m'
 yellow='\033[0;33m'
 plain='\033[0m'
-software=(Docker_Caddy Docker_Caddy_cloudflare Docker)
-operation=(install update_config update_image logs)
+software=Docker
+operation=install
 # Make sure only root can run our script
 [[ $EUID -ne 0 ]] && echo -e "[${red}Error${plain}] This script must be run as root!" && exit 1
 
@@ -187,30 +187,7 @@ install_check(){
     fi
 }
 
-install_select(){
-    clear
-    while true
-    do
-    echo  "Which v2ray Docker you'd select:"
-    for ((i=1;i<=${#software[@]};i++ )); do
-        hint="${software[$i-1]}"
-        echo -e "${green}${i}${plain}) ${hint}"
-    done
-    read -p "Please enter a number (Default ${software[0]}):" selected
-    [ -z "${selected}" ] && selected="1"
-    case "${selected}" in
-        1|2|3|4)
-        echo
-        echo "You choose = ${software[${selected}-1]}"
-        echo
-        break
-        ;;
-        *)
-        echo -e "[${red}Error${plain}] Please only enter a number [1-4]"
-        ;;
-    esac
-    done
-}
+
 install_dependencies(){
     if check_sys packageManager yum; then
         echo -e "[${green}Info${plain}] Checking the EPEL repository..."
@@ -319,24 +296,5 @@ install_v2ray(){
 clear
 while true
 do
-echo  "Which operation you'd select:"
-for ((i=1;i<=${#operation[@]};i++ )); do
-    hint="${operation[$i-1]}"
-    echo -e "${green}${i}${plain}) ${hint}"
-done
-read -p "Please enter a number (Default ${operation[0]}):" selected
-[ -z "${selected}" ] && selected="1"
-case "${selected}" in
-    1|2|3|4)
-    echo
-    echo "You choose = ${operation[${selected}-1]}"
-    echo
-    ${operation[${selected}-1]}_v2ray
-    break
-    ;;
-    *)
-    echo -e "[${red}Error${plain}] Please only enter a number [1-4]"
-    ;;
-esac
-done
 
+done
