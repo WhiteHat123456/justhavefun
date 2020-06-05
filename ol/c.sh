@@ -33,7 +33,7 @@ while getopts u:k:s:n:p:z: opts; do
     s) ssrpanel_speedtest=${OPTARG} ;;
     n) ssrpanel_node_id=${OPTARG} ;;
     p) v2ray_api_port=${OPTARG} ;;
-	z) v2ray_downWithPanel=${OPTARG} ;;
+    z) v2ray_downWithPanel=${OPTARG} ;;
   esac
 done 
 
