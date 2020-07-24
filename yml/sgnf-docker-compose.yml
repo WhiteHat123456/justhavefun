@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+ v2ray:
+    image: uuid3789/nf:sg
+    restart: always
+    network_mode: "host"
+    environment:
+      sspanel_url: 'https://google.com'
+      key: '123456'
+      speedtest: 6
+      node_id: 3
+      api_port: 23440
+      downWithPanel: 0
+      TZ: "Asia/Shanghai"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
