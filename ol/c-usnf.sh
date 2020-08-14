@@ -203,7 +203,7 @@ config_docker(){
     echo "install curl"
     install_dependencies
     echo "Writing docker-compose.yml"
-    curl -L https://raw.githubusercontent.com/WhiteHat123456/justhavefun/master/yml/usnf-docker-compose.yml > docker-compose.yml
+    curl -L https://raw.githubusercontent.com/WhiteHat123456/justhavefun/master/yml/nf-hkbn-docker-compose.yml > docker-compose.yml
     sed -i "s|node_id:.*|node_id: ${ssrpanel_node_id}|"  ./docker-compose.yml
     sed -i "s|sspanel_url:.*|sspanel_url: '${ssrpanel_url}'|"  ./docker-compose.yml
     sed -i "s|key:.*|key: '${ssrpanel_key}'|"  ./docker-compose.yml
